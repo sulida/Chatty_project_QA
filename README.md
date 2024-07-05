@@ -1,1 +1,1 @@
-# QA_Project_2024
+# Chatty_project_QA
