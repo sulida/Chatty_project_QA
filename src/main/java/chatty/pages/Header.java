@@ -5,10 +5,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class Header extends BasePage {
 
-    @FindBy(xpath = "//*[@alt=\"Uploaded\"]")
+    @FindBy(xpath = "//*[@href='/homeblog']")
     private WebElement home;
 
     @FindBy(xpath = "//a[@href=\"/about\"]")
@@ -17,23 +22,28 @@ public class Header extends BasePage {
     @FindBy(xpath = "//a[@href=\"/contact\"]")
     private WebElement contact;
 
-    @FindBy(xpath = "//div[@class=\"header__user open\"]")
+    @FindBy(xpath = "//*[@class='header__user header__menu']")
     private WebElement helloDropDownMenu;
 
     @FindBy(xpath = "//a[@href=\"/userprofile\"]")
-    private WebElement yourProfile;
+    private WebElement yourProfileLink;
 
     @FindBy(xpath = "//a[@href=\"/draft\"]")
-    private WebElement myDrafts;
+    private WebElement myDraftsLink;
+
+    @FindBy(xpath = "//a[@href=\"/users\"]")
+    private WebElement adminPanelLink;
 
     @FindBy(xpath = "//a[@href=\"/login\"]")
-    private WebElement logOut;
+    private WebElement logOutLink;
 
     public Header(WebDriver driver) {
         super(driver);
     }
 
     public BlogPage clickHomeLink(){
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+//        wait.until(ExpectedConditions.elementToBeClickable(home));
         home.click();
         return new BlogPage(driver);
     }
@@ -43,10 +53,30 @@ public class Header extends BasePage {
         return new ContactUsPage(driver);
     }
 
-        public ProfilePage clickYourProfileLink(){
-        helloDropDownMenu.click();
-        new Actions(driver).moveToElement(yourProfile).click();
+        public Header hoverDropDownMenuHello(){
+        new Actions(driver).moveToElement(helloDropDownMenu).perform();
+        return this;
+    }
+
+    public ProfilePage clickYourProfileLink(){
+        yourProfileLink.click();
         return new ProfilePage(driver);
+    }
+
+    public AdminPage clickAdminPanelLink(){
+        Select select = new Select(helloDropDownMenu);
+        select.selectByVisibleText("Admin Panel");
+        return  new AdminPage(driver);
+    }
+
+    public String getTextDropDownMenuAdminPanel(){
+//        helloDropDownMenu.click();
+        return adminPanelLink.getText();
+    }
+
+    public boolean helloUserIsDisplayed(){
+        return helloDropDownMenu.isDisplayed();
+
     }
 
 }

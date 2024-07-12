@@ -47,5 +47,9 @@ public class LoginPage extends BasePage {
         return new CreateAccountPage(driver);
     }
 
+    public  boolean loginButtonIsDisplayed() {
+        return loginButton.isDisplayed();
+    }
+
 }
 
