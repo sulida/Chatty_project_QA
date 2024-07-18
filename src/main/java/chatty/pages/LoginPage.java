@@ -17,39 +17,57 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//*[@href=\"/registration\" and contains(text(), 'Sign in')]")
     private WebElement signInLink;
 
+    @FindBy(xpath = "//h1[text()=\"Login Form\"]")
+    private WebElement headLineLoginForm;
+
+    @FindBy(xpath = "//div[@class=\"text-error\"]")
+    private WebElement errorMessageUserNotFound;
+
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
-    public LoginPage open(){
+    public LoginPage open() {
         driver.get("http://chatty.telran-edu.de:8089/login");
         return this;
     }
 
-    public LoginPage inputEmail (String email){
+    public LoginPage inputEmail(String email) {
         emailEditBox.sendKeys(email);
         return this;
     }
 
-    public LoginPage inputPassword (String password){
+    public LoginPage inputPassword(String password) {
         passwordEditBox.sendKeys(password);
         return this;
     }
 
-    public BlogPage clickLoginButton(){
+    public BlogPage clickLoginButton() {
         loginButton.click();
         return new BlogPage(driver);
     }
 
-    public CreateAccountPage clickSignInLink(){
+    public AdminPage clickLoginButtonForAdmin() {
+        loginButton.click();
+        return new AdminPage(driver);
+    }
+
+    public CreateAccountPage clickSignInLink() {
         signInLink.click();
         return new CreateAccountPage(driver);
     }
 
-    public  boolean loginButtonIsDisplayed() {
+    public boolean loginButtonIsDisplayed() {
         return loginButton.isDisplayed();
     }
 
+    public String getTextFromHeadLineLoginForm() {
+        return headLineLoginForm.getText();
+    }
+
+    public String getTextFromErrorMessage() {
+        return errorMessageUserNotFound.getText();
+    }
 }
 

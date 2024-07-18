@@ -13,6 +13,8 @@ import java.time.Duration;
 
 public class Header extends BasePage {
 
+    private WebDriverWait wait;
+
     @FindBy(xpath = "//*[@href='/homeblog']")
     private WebElement home;
 
@@ -39,42 +41,48 @@ public class Header extends BasePage {
 
     public Header(WebDriver driver) {
         super(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
-    public BlogPage clickHomeLink(){
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-//        wait.until(ExpectedConditions.elementToBeClickable(home));
+    public BlogPage clickHomeLink() {
+       wait.until(ExpectedConditions.elementToBeClickable(home));
         home.click();
         return new BlogPage(driver);
     }
 
-    public ContactUsPage clickContactLink(){
+    public ContactUsPage clickContactLink() {
+        wait.until(ExpectedConditions.elementToBeClickable(home));
         contact.click();
         return new ContactUsPage(driver);
     }
 
-        public Header hoverDropDownMenuHello(){
+    public Header hoverDropDownMenuHello() {
+        wait.until(ExpectedConditions.elementToBeClickable(home));
         new Actions(driver).moveToElement(helloDropDownMenu).perform();
         return this;
     }
 
-    public ProfilePage clickYourProfileLink(){
+    public ProfilePage clickYourProfileLink() {
         yourProfileLink.click();
         return new ProfilePage(driver);
     }
 
-    public AdminPage clickAdminPanelLink(){
+    public AdminPage clickAdminPanelLink() {
         Select select = new Select(helloDropDownMenu);
         select.selectByVisibleText("Admin Panel");
-        return  new AdminPage(driver);
+        return new AdminPage(driver);
     }
 
-    public String getTextDropDownMenuAdminPanel(){
-//        helloDropDownMenu.click();
+    public LoginPage clickLogoutLink() {
+        logOutLink.click();
+        return new LoginPage(driver);
+    }
+
+    public String getTextDropDownMenuAdminPanel() {
         return adminPanelLink.getText();
     }
 
-    public boolean helloUserIsDisplayed(){
+    public boolean helloUserIsDisplayed() {
         return helloDropDownMenu.isDisplayed();
 
     }

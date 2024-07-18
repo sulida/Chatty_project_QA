@@ -1,55 +1,71 @@
 package user_creating_authorisation;
 
 import basetests.BaseTest;
+import chatty.pages.AdminPage;
 import chatty.pages.BlogPage;
+import chatty.pages.Header;
 import chatty.pages.LoginPage;
 import chromeRegistry.ChromeRegistry;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.util.concurrent.TimeUnit;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestLoginUser extends BaseTest{
+public class TestLoginUser extends BaseTest {
+    private String email = "abcd@gmail.com";
+    private String password = "abc12345";
+    private String wrongPassword = "abc123456789";
+    private String unregisteredEmail = "abcd0000@gmail.com";
+    private String emailAdmin = "tbceee123@gmail.com";
+    private String passwordAdmin = "abc123450001";
+
 
     @Test
-    public void loginUserwithValidData(){
+    public void loginUserwithValidData() {
         LoginPage loginPage = new LoginPage(driver);
-        driver.manage().window().maximize();
         loginPage.open()
-                .inputEmail("abcd@gmail.com")
-                .inputPassword("abc12345")
+                .inputEmail(email)
+                .inputPassword(password)
                 .clickLoginButton();
-        BlogPage blogPage =new BlogPage(driver);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        assertTrue(blogPage.feedheadLineIsDisplayed());
+        BlogPage blogPage = new BlogPage(driver);
+        assertTrue(blogPage.feedHeadLineIsDisplayed());
 
     }
 
     @Test
-    public void loginUserwithInvalidData() {
-        ChromeDriver driver = new ChromeRegistry().registerDriver();
+    public void loginUserWithWrongPassword() {
         LoginPage loginPage = new LoginPage(driver);
-        driver.manage().window().maximize();
         loginPage.open()
-                .inputEmail("123abcd@gmail.com")
-                .inputPassword("abc1234")
+                .inputEmail(email)
+                .inputPassword(wrongPassword)
                 .clickLoginButton();
+        defineTestResultTrue(loginPage.getTextFromHeadLineLoginForm().contains("Login Form"));
 
     }
 
+    @Test
+    public void loginUnregisteredUser() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.open()
+                .inputEmail(unregisteredEmail)
+                .inputPassword(password)
+                .clickLoginButton();
+        defineTestResultTrue(loginPage.getTextFromErrorMessage().contains("User not found. Please register."));
 
+    }
 
+    @Test
+    public void loginAdminwithValidData() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.open()
+                .inputEmail(emailAdmin)
+                .inputPassword(passwordAdmin)
+                .clickLoginButton();
+        defineTestResultTrue(new AdminPage(driver).getTextFromAdninPanelTitle().contains("Admin panel"));
 
-
-//    @AfterEach
-//    public void tearDown() {
-//        driver.quit();
-//    }
-
-
+    }
 
 }

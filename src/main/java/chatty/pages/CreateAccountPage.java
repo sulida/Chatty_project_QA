@@ -14,6 +14,8 @@ import java.time.Duration;
 
 public class CreateAccountPage extends BasePage {
 
+    private WebDriverWait wait;
+
     @FindBy(xpath = "//*[@data-test= \"email\"]")
     private WebElement emailEditBox;
 
@@ -42,70 +44,73 @@ public class CreateAccountPage extends BasePage {
     private WebElement errorMessage;
 
     public CreateAccountPage(WebDriver driver) {
+
         super(driver);
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public CreateAccountPage inputEmail (String email){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    public CreateAccountPage inputEmail(String email) {
         wait.until(ExpectedConditions.elementToBeClickable(emailEditBox));
         emailEditBox.sendKeys(email);
         return this;
     }
 
-    public CreateAccountPage inputPassword (String password){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    public CreateAccountPage inputPassword(String password) {
         wait.until(ExpectedConditions.elementToBeClickable(passwordEditBox));
         passwordEditBox.sendKeys(password);
         return this;
     }
 
-    public CreateAccountPage inputConfirmPassword (String password){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    public CreateAccountPage inputConfirmPassword(String password) {
         wait.until(ExpectedConditions.elementToBeClickable(confirmPasswordEditBox));
         confirmPasswordEditBox.sendKeys(password);
         return this;
     }
 
-    public BlogPage clickRegistrationButton(){
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        wait.until(ExpectedConditions.elementToBeClickable(registrationButton));
+    public BlogPage clickRegistrationButton() {
+        wait.until(ExpectedConditions.visibilityOf(registrationButton));
         registrationButton.click();
         return new BlogPage(driver);
     }
 
-    public  boolean headlineCreateAccountIsDisplayed() {
+    public boolean headlineCreateAccountIsDisplayed() {
         return headlineCreateAccount.isDisplayed();
     }
 
-    public CreateAccountPage selectDropDownMenu(){
-        Select select = new Select(selectDropDownMenu);
-        select.selectByVisibleText("admin");
+    public CreateAccountPage selectDropDownMenu() {
+        wait.until(ExpectedConditions.visibilityOf(selectDropDownMenu));
+        selectDropDownMenu.click();
         return this;
     }
 
-    public CreateAccountPage selectUser(){
+    public CreateAccountPage selectUser() {
         Select select = new Select(selectDropDownMenu);
         select.selectByValue("user");
         return this;
     }
 
-    public CreateAccountPage selectAdmin(){
+    public CreateAccountPage selectAdmin() {
         Select select = new Select(selectDropDownMenu);
         select.selectByValue("admin");
         return this;
     }
 
-    public AdminPage clickRegistrationButtonForAdmin(){
+    public AdminPage clickRegistrationButtonForAdmin() {
+        wait.until(ExpectedConditions.elementToBeClickable(registrationButton));
         registrationButton.click();
         return new AdminPage(driver);
     }
 
-    public String getTextFromErrorMessage(){
+    public String getTextFromErrorMessage() {
         return errorMessage.getText();
     }
 
-    public String getTextFromHeadline(){
+    public String getTextFromHeadline() {
         return headlineCreateAccount.getText();
+    }
+
+    public boolean registrationButtonIsNotClickable() {
+        return !registrationButton.isEnabled();
     }
 
 }

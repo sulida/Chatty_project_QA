@@ -11,35 +11,43 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.openqa.selenium.support.ui.Select;
-public class TestCreateAccount extends BaseTest{
+
+public class TestCreateAccount extends BaseTest {
+    private String email = "tbce123@gmail.com";
+    private String password = "abc12345000";
+    private String emailAdmin = "tbceee123@gmail.com";
+    private String passwordAdmin = "abc123450001";
+    private String emailForShortPassword ="123000aaa@gmail.com";
+    private String shortPassword = "abc1234";
+
+
     @Test
-    public void successCreateUserWithValidData(){
+    public void successCreateUserWithValidData() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.open()
                 .clickSignInLink()
                 .selectUser()
-                .inputEmail("tbce123@gmail.com")
-                .inputPassword("abc12345000")
-                .inputConfirmPassword("abc12345000")
+                .inputEmail(email)
+                .inputPassword(password)
+                .inputConfirmPassword(password)
                 .clickRegistrationButton();
-        Header header = new Header(driver);
-        assertTrue(header.helloUserIsDisplayed());
+        defineTestResultTrue(new Header(driver).helloUserIsDisplayed());
 
     }
-   @Test
-    public void successCreateAdminWithValidData(){
+
+    @Test
+    public void successCreateAdminWithValidData() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.open()
                 .clickSignInLink()
                 .selectAdmin()
-                .inputEmail("tbceee123@gmail.com")
-                .inputPassword("abc12345000")
-                .inputConfirmPassword("abc12345000")
+                .inputEmail(emailAdmin)
+                .inputPassword(passwordAdmin)
+                .inputConfirmPassword(passwordAdmin)
                 .clickRegistrationButton();
-       Header header = new Header(driver);
-       header.hoverDropDownMenuHello();
-       assertTrue(header.getTextDropDownMenuAdminPanel().contains("Admin Panel"));
-
+        Header header = new Header(driver);
+        header.hoverDropDownMenuHello();
+        defineTestResultTrue(header.getTextDropDownMenuAdminPanel().contains("Admin Panel"));
 
     }
 
@@ -49,27 +57,24 @@ public class TestCreateAccount extends BaseTest{
         loginPage.open()
                 .clickSignInLink()
                 .selectUser()
-                .inputEmail("abcd123@gmail.com")
-                .inputPassword("abc12345")
-                .inputConfirmPassword("abc12345")
+                .inputEmail(email)
+                .inputPassword(password)
+                .inputConfirmPassword(password)
                 .clickRegistrationButton();
-        CreateAccountPage createAccountPage = new CreateAccountPage(driver);
-        assertTrue(createAccountPage.getTextFromErrorMessage().contains("Email already exists!"));
+        defineTestResultTrue(new CreateAccountPage(driver).getTextFromErrorMessage().contains("Email already exists!"));
 
     }
 
     @Test
-    public void unsuccessCraeteUserWithShortThen8SYmbolsPassword(){
+    public void unsuccessCreateUserWithShortThen8SymbolsPassword() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.open()
                 .clickSignInLink()
                 .selectUser()
-                .inputEmail("123000aaa@gmail.com")
-                .inputPassword("abc1234")
-                .inputConfirmPassword("abc1234")
-                .clickRegistrationButton();
-        CreateAccountPage createAccountPage = new CreateAccountPage(driver);
-        assertTrue(createAccountPage.getTextFromHeadline().contains("Create Account"));
+                .inputEmail(emailForShortPassword)
+                .inputPassword(shortPassword)
+                .inputConfirmPassword(shortPassword);
+        defineTestResultTrue(new CreateAccountPage(driver).registrationButtonIsNotClickable());
 
 
     }

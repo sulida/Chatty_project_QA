@@ -6,8 +6,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.Select;
+
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Demo {
     public static void main(String[] args) {
@@ -15,7 +18,8 @@ public class Demo {
         driver.manage().window().maximize();
         LoginPage loginPage = new LoginPage(driver);
         loginPage.open()
-                .clickSignInLink().selectAdmin().selectUser();
+//                .clickSignInLink().selectAdmin();
+//                .selectUser();
 //                .inputEmail("123abc@gmail.com")
 //                .inputPassword("d12345678")
 //                .inputConfirmPassword("d12345678")
@@ -24,11 +28,37 @@ public class Demo {
 //        createAccountPage.selectDropDownMenu();
 //                createAccountPage.selectUser();
 
+                .inputEmail("enk@gmail.com")
+                .inputPassword("a12345678")
+                .clickLoginButton()
+//                .clickMyPostsToggle()
+//                .clickPost()
+//                .clickPostCreated("Test2");
+////                .isPostCreated("Test2");
+//                .clickCreatePostPlusButton()
+//                .inputTitle("New title7")
+//                .inputDescription("The same again")
+//                .inputContent("Abrakadabra everyday")
+//                .clickAttachPhotoBox("C:\\Users\\Mi\\IdeaProjects\\Chatty_project_QA\\src\\main\\resources\\photo\\Photo1.jpg")
+////                .dragNDropPhoto("C:\\Users\\Mi\\IdeaProjects\\Chatty_project_QA\\src\\main\\resources\\photo\\Photo1.jpg");
+//        .fillDateForDelayPost("16", "07", "2024")
+//                .clickSaveAsDraftToggle()
+//                .clickSubmitButton()
+                .clickMyPostsToggle()
+                .clickPostCreated("New title7");
+                new PostPage(driver).clickDeleteButton();
+//                .deletePostsByTitle("New title7");
+//        new BlogPage(driver).clickMyPostsToggle()
+//                .isPostCreated("New title7");
 
 
-//                .inputEmail("enk@gmail.com")
-//                .inputPassword("a12345678")
-//                .clickLoginButton();
+
+//        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//        Header header = new Header(driver);
+//        header.hoverDropDownMenuHello().clickLogoutLink();
+//        LoginPage loginPage = new LoginPage(driver);
+//        assertTrue(loginPage.getTextFromHeadLineLoginForm().contains("Login Form"));
+
 //        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 //
 //        BlogPage blogPage = new BlogPage(driver);

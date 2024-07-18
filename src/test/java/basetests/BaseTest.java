@@ -12,14 +12,15 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BaseTest{
+public class BaseTest {
 
-  protected WebDriver driver;
-  @BeforeEach
+    protected WebDriver driver;
+
+    @BeforeEach
     public void setUp() {
-       this.driver = new ChromeRegistry().registerDriver();
+        this.driver = new ChromeRegistry().registerDriver();
         driver.manage().window().maximize();
-      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     public void defineTestResultEquals(Object expected, Object actual) {
@@ -31,11 +32,13 @@ public class BaseTest{
             fail("TEST FAILED");
         }
     }
+
     public void defineTestResultTrue(boolean condition) {
         String name = this.getClass().getName();
         try {
             assertTrue(condition);
         } catch (AssertionError e) {
+            ScreenshotUtil.captureScreen(driver, name);
             fail("TEST FAILED");
         }
     }
@@ -49,9 +52,9 @@ public class BaseTest{
         }
     }
 
-    @AfterEach
-    public void tearDown() {
-        driver.quit();
-    }
+//    @AfterEach
+//    public void tearDown() {
+//        driver.quit();
+//    }
 }
 
