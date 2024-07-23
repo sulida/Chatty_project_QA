@@ -41,7 +41,7 @@ public class Header extends BasePage {
 
     public Header(WebDriver driver) {
         super(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public BlogPage clickHomeLink() {
@@ -51,13 +51,13 @@ public class Header extends BasePage {
     }
 
     public ContactUsPage clickContactLink() {
-        wait.until(ExpectedConditions.elementToBeClickable(home));
+        wait.until(ExpectedConditions.elementToBeClickable(contact));
         contact.click();
         return new ContactUsPage(driver);
     }
 
     public Header hoverDropDownMenuHello() {
-        wait.until(ExpectedConditions.elementToBeClickable(home));
+        wait.until(ExpectedConditions.elementToBeClickable(helloDropDownMenu));
         new Actions(driver).moveToElement(helloDropDownMenu).perform();
         return this;
     }

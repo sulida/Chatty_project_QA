@@ -1,17 +1,11 @@
-package user_creating_authorisation;
+package userCreatingAuthorisation;
 
-import basetests.BaseTest;
+import basetest.BaseTest;
 import chatty.pages.AdminPage;
 import chatty.pages.BlogPage;
-import chatty.pages.Header;
 import chatty.pages.LoginPage;
-import chromeRegistry.ChromeRegistry;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestLoginUser extends BaseTest {

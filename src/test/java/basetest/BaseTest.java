@@ -1,15 +1,11 @@
-package basetests;
+package basetest;
 
 import chromeRegistry.ChromeRegistry;
-import io.opentelemetry.sdk.common.CompletableResultCode;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import util.ScreenshotUtil;
-
 import java.util.concurrent.TimeUnit;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BaseTest {
@@ -52,9 +48,9 @@ public class BaseTest {
         }
     }
 
-//    @AfterEach
-//    public void tearDown() {
-//        driver.quit();
-//    }
+    @AfterEach
+    public void tearDown() {
+        driver.quit();
+    }
 }
 

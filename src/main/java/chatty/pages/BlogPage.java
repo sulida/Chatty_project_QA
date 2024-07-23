@@ -40,7 +40,7 @@ public class BlogPage extends BasePage {
 
     public BlogPage(WebDriver driver) {
         super(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(40));
     }
 
     public CreatePostPage clickCreatePostPlusButton() {
@@ -81,8 +81,32 @@ public class BlogPage extends BasePage {
         return feedHeadLine.getText();
     }
 
+//    private WebElement findPostByTitle (String expectedTitle) throws Exception {
+//        wait.until(ExpectedConditions.visibilityOfAllElements(posts));
+//        for (WebElement post : posts) {
+//            WebElement postTitle = post.findElement(By.xpath(".//h3"));
+//            if (postTitle.getText().equals(expectedTitle)) {
+//                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", post);
+//                return post;
+//            }
+//        }
+//        throw new Exception("Post with the title " + expectedTitle + " is not found");
+//    }
+
 
     public void clickPostCreated(String expectedTitle) {
+
+//        try {
+////            WebElement post =
+//            findPostByTitle(expectedTitle);
+//            if (post != null) {
+//                post.click();
+//            }
+//        } catch (Exception e) {
+//            System.err.println("Error: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//    }
 
         wait.until(ExpectedConditions.visibilityOfAllElements(posts));
         try {
@@ -106,7 +130,17 @@ public class BlogPage extends BasePage {
     }
 
     public boolean isPostCreated(String expectedTitle) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        boolean postFound = false;
+//        try {
+//            WebElement post = findPostByTitle(expectedTitle);
+//            postFound = post != null;
+//        } catch (Exception e) {
+//            System.err.println("Error: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//        return postFound;
+//    }
+
         wait.until(ExpectedConditions.visibilityOfAllElements(posts));
         boolean postFound = false;
         try {
@@ -126,32 +160,33 @@ public class BlogPage extends BasePage {
             e.printStackTrace();
         }
         return postFound;
-
-    }
-
-    public boolean deletePostsByTitle(String expectedTitle) {
-       wait.until(ExpectedConditions.visibilityOfAllElements(posts));
-        boolean postDeleted = false;
-
-        try {
-            for (WebElement post : posts) {
-                WebElement postTitle = post.findElement(By.xpath(".//h3"));
-                if (postTitle.getText().equals(expectedTitle)) {
-                    WebElement deleteButton = post.findElement(By.xpath("//*[@alt=\"delete button\"]"));
-                    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", post);
-                    post.click();
-                    deleteButton.click();
-
-                    wait.until(ExpectedConditions.stalenessOf(post));
-                    postDeleted = true;
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-            e.printStackTrace();
-        }
-        return postDeleted;
     }
 
 
+
+//    public boolean deletePostsByTitle(String expectedTitle) {
+////       wait.until(ExpectedConditions.visibilityOfAllElements(posts));
+////        boolean postDeleted = false;
+////
+////        try {
+////            for (WebElement post : posts) {
+////                WebElement postTitle = post.findElement(By.xpath(".//h3"));
+////                if (postTitle.getText().equals(expectedTitle)) {
+////                    WebElement deleteButton = post.findElement(By.xpath("//*[@alt=\"delete button\"]"));
+////                    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", post);
+////                    post.click();
+////                    deleteButton.click();
+////
+////                    wait.until(ExpectedConditions.stalenessOf(post));
+////                    postDeleted = true;
+////                }
+////            }
+////        } catch (Exception e) {
+////            System.err.println("Error: " + e.getMessage());
+////            e.printStackTrace();
+////        }
+////        return postDeleted;
+////    }
+//
+//    }
 }

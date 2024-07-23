@@ -42,7 +42,6 @@ public class ContactUsPage extends BasePage {
 
     public ContactUsPage inputEmail(String email) {
         wait.until(ExpectedConditions.elementToBeClickable(inputEmailEditBox));
-        ;
         inputEmailEditBox.sendKeys(email);
         return this;
     }

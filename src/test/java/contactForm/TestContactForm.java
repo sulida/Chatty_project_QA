@@ -1,6 +1,6 @@
-package contact_form;
+package contactForm;
 
-import basetests.BaseTest;
+import basetest.BaseTest;
 import chatty.pages.ContactUsPage;
 import chatty.pages.Header;
 import chatty.pages.LoginPage;
@@ -31,9 +31,7 @@ public class TestContactForm extends BaseTest {
                 .inputEmail(email)
                 .inputMessage(message)
                 .clickSendMessageButton();
-        defineTestResultTrue(new ContactUsPage(driver).getTextFromSuccessfulMessage().contains("Feedback submitted !"));
-
-
+        defineTestResultTrue(new ContactUsPage(driver).getTextFromSuccessfulMessage().contains("Feedback submitted successfully!"));
 
     }
 }

@@ -1,16 +1,12 @@
-package user_creating_authorisation;
+package userCreatingAuthorisation;
 
-import basetests.BaseTest;
+import basetest.BaseTest;
 import chatty.pages.CreateAccountPage;
 import chatty.pages.Header;
 import chatty.pages.LoginPage;
-import chromeRegistry.ChromeRegistry;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.openqa.selenium.support.ui.Select;
 
 public class TestCreateAccount extends BaseTest {
     private String email = "tbce123@gmail.com";

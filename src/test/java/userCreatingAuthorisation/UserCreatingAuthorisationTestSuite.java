@@ -1,4 +1,4 @@
-package user_creating_authorisation;
+package userCreatingAuthorisation;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

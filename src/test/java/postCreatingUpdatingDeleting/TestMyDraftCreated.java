@@ -1,6 +1,6 @@
-package post_creating_updating_deleting;
+package postCreatingUpdatingDeleting;
 
-import basetests.BaseTest;
+import basetest.BaseTest;
 import chatty.pages.BlogPage;
 import chatty.pages.LoginPage;
 import chatty.pages.MyDraftsPage;

@@ -39,12 +39,14 @@ public class AdminPage extends BasePage {
 
     public AdminPage inputUserEmailInSearchBox(String email) {
         wait.until(ExpectedConditions.elementToBeClickable(emailSearchBox));
+        logger.info("Input email in search box: " + email);
         emailSearchBox.sendKeys(email);
         return new AdminPage(driver);
     }
 
     public AdminPage clickSearchButton() {
         wait.until(ExpectedConditions.elementToBeClickable(searchButton));
+        logger.info("Click search button");
         searchButton.click();
         return new AdminPage(driver);
     }

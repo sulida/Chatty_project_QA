@@ -1,6 +1,6 @@
-package update_delete_user;
+package updateDeleteUser;
 
-import basetests.BaseTest;
+import basetest.BaseTest;
 import chatty.pages.AdminPage;
 import chatty.pages.LoginPage;
 import chatty.pages.ProfilePage;
@@ -14,12 +14,11 @@ public class TestUpdateProfile extends BaseTest {
     private String name = "John";
     private String surname = "White";
     private String date = "01";
-    private  String month = "07";
-    private  String year = "2000";
+    private String month = "07";
+    private String year = "2000";
     private String phone = "380672357898";
     private String oldPassword = "abc12345";
     private String newPassword = "abc000";
-
 
 
     @BeforeEach
@@ -31,7 +30,7 @@ public class TestUpdateProfile extends BaseTest {
                 .clickLoginButton();
     }
 
-    public void updateProfilTest(){
+    public void updateProfilTest() {
         AdminPage adminPage = new AdminPage(driver);
         adminPage.inputUserEmailInSearchBox(userEmail)
                 .clickSearchButton()
@@ -50,7 +49,7 @@ public class TestUpdateProfile extends BaseTest {
                 .inputConfirmNewPassword(newPassword)
                 .clickSavePasswordButton()
                 .clickSaveButton();
-       defineTestResultEquals(name, profilePage.getTextName());
+        defineTestResultEquals(name, profilePage.getTextName());
         defineTestResultEquals(surname, profilePage.getTextSurname());
         defineTestResultEquals(String.format("%s-%s-%s", year, month, date), profilePage.getTextBirthday());
         defineTestResultEquals(phone, profilePage.getTextPhone());

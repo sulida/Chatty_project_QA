@@ -26,45 +26,55 @@ public class MyDraftsPage extends BasePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public boolean isDraftPostCreated(String expectedTitle) {
+    private WebElement findPostByTitle (String expectedTitle) throws Exception {
         wait.until(ExpectedConditions.visibilityOfAllElements(posts));
+        for (WebElement post : posts) {
+            WebElement postTitle = post.findElement(By.xpath(".//h3"));
+            if (postTitle.getText().equals(expectedTitle)) {
+                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", post);
+                return post;
+            }
+        }
+        throw new Exception("Post with the title " + expectedTitle + " is not found");
+    }
+
+    public boolean isDraftPostCreated(String expectedTitle) {
         boolean postFound = false;
         try {
-            for (WebElement post : posts) {
-                WebElement postTitle = post.findElement(By.xpath(".//h3"));
-                if (postTitle.getText().equals(expectedTitle)) {
-                    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", post);
-                    postFound = true;
-                    break;
-                }
-            }
-            if (!postFound) {
-                throw new Exception("Post with the title " + expectedTitle + " is not found");
-            }
+            WebElement post = findPostByTitle(expectedTitle);
+            postFound = post != null;
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
         return postFound;
-
     }
+//        wait.until(ExpectedConditions.visibilityOfAllElements(posts));
+//        boolean postFound = false;
+//        try {
+//            for (WebElement post : posts) {
+//                WebElement postTitle = post.findElement(By.xpath(".//h3"));
+//                if (postTitle.getText().equals(expectedTitle)) {
+//                    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", post);
+//                    postFound = true;
+//                    break;
+//                }
+//            }
+//            if (!postFound) {
+//                throw new Exception("Post with the title " + expectedTitle + " is not found");
+//            }
+//        } catch (Exception e) {
+//            System.err.println("Error: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//        return postFound;
+
 
     public void clickDraftPostCreated(String expectedTitle) {
-
-        wait.until(ExpectedConditions.visibilityOfAllElements(posts));
         try {
-            boolean postFound = false;
-            for (WebElement post : posts) {
-                WebElement postTitle = post.findElement(By.xpath(".//h3"));
-                if (postTitle.getText().equals(expectedTitle)) {
-                    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", post);
-                    post.click();
-                    postFound = true;
-                    break;
-                }
-            }
-            if (!postFound) {
-                throw new Exception("Post with the title " + expectedTitle + " is not found");
+            WebElement post = findPostByTitle(expectedTitle);
+            if (post != null) {
+                post.click();
             }
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
@@ -72,4 +82,29 @@ public class MyDraftsPage extends BasePage {
         }
     }
 
+
+//        wait.until(ExpectedConditions.visibilityOfAllElements(posts));
+//        try {
+//            boolean postFound = false;
+//            for (WebElement post : posts) {
+//                WebElement postTitle = post.findElement(By.xpath(".//h3"));
+//                if (postTitle.getText().equals(expectedTitle)) {
+//                    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", post);
+//                    post.click();
+//                    postFound = true;
+//                    break;
+//                }
+//            }
+//            if (!postFound) {
+//                throw new Exception("Post with the title " + expectedTitle + " is not found");
+//            }
+//        } catch (Exception e) {
+//            System.err.println("Error: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//    }
+
+
 }
+
+

@@ -1,7 +1,6 @@
-package user_creating_authorisation;
+package userCreatingAuthorisation;
 
-import basetests.BaseTest;
-import chatty.pages.BlogPage;
+import basetest.BaseTest;
 import chatty.pages.Header;
 import chatty.pages.LoginPage;
 import org.junit.jupiter.api.BeforeEach;

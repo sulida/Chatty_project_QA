@@ -16,6 +16,8 @@ public class CreateAccountPage extends BasePage {
 
     private WebDriverWait wait;
 
+    private Select select;
+
     @FindBy(xpath = "//*[@data-test= \"email\"]")
     private WebElement emailEditBox;
 
@@ -44,9 +46,10 @@ public class CreateAccountPage extends BasePage {
     private WebElement errorMessage;
 
     public CreateAccountPage(WebDriver driver) {
-
         super(driver);
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.select = new Select(selectDropDownMenu);
+
     }
 
     public CreateAccountPage inputEmail(String email) {
@@ -84,13 +87,11 @@ public class CreateAccountPage extends BasePage {
     }
 
     public CreateAccountPage selectUser() {
-        Select select = new Select(selectDropDownMenu);
         select.selectByValue("user");
         return this;
     }
 
     public CreateAccountPage selectAdmin() {
-        Select select = new Select(selectDropDownMenu);
         select.selectByValue("admin");
         return this;
     }
