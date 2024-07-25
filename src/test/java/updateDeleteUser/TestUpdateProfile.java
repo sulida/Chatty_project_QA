@@ -5,10 +5,11 @@ import chatty.pages.AdminPage;
 import chatty.pages.LoginPage;
 import chatty.pages.ProfilePage;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class TestUpdateProfile extends BaseTest {
 
-    private String emailAdmin = "tbceee123@gmail.com";
+    private String emailAdmin = "tbceee1234@gmail.com";
     private String passwordAdmin = "abc123450001";
     private String userEmail = "abcd@gmail.com";
     private String name = "John";
@@ -30,6 +31,7 @@ public class TestUpdateProfile extends BaseTest {
                 .clickLoginButton();
     }
 
+    @Test
     public void updateProfilTest() {
         AdminPage adminPage = new AdminPage(driver);
         adminPage.inputUserEmailInSearchBox(userEmail)

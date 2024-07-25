@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestCreateAccount extends BaseTest {
-    private String email = "tbce123@gmail.com";
+    private String email = "tbce543@gmail.com";
     private String password = "abc12345000";
-    private String emailAdmin = "tbceee123@gmail.com";
+    private String emailAdmin = "tbceee909@gmail.com";
     private String passwordAdmin = "abc123450001";
-    private String emailForShortPassword ="123000aaa@gmail.com";
+    private String emailForShortPassword = "123000aaa@gmail.com";
     private String shortPassword = "abc1234";
 
 

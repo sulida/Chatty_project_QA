@@ -6,12 +6,13 @@ import chatty.pages.Header;
 import chatty.pages.LoginPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestContactForm extends BaseTest {
     private String email = "abcd@gmail.com";
     private String password = "abc12345";
-    private  String name = "John";
+    private String name = "John";
     private String message = "Please contact me";
 
     @BeforeEach
@@ -24,7 +25,7 @@ public class TestContactForm extends BaseTest {
     }
 
     @Test
-    public void contactFormFillTest(){
+    public void contactFormFillTest() {
         Header header = new Header(driver);
         header.clickContactLink()
                 .inputName(name)

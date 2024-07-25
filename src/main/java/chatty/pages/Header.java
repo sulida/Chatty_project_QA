@@ -45,7 +45,7 @@ public class Header extends BasePage {
     }
 
     public BlogPage clickHomeLink() {
-       wait.until(ExpectedConditions.elementToBeClickable(home));
+        wait.until(ExpectedConditions.elementToBeClickable(home));
         home.click();
         return new BlogPage(driver);
     }

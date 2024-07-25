@@ -26,84 +26,49 @@ public class MyDraftsPage extends BasePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    private WebElement findPostByTitle (String expectedTitle) throws Exception {
-        wait.until(ExpectedConditions.visibilityOfAllElements(posts));
-        for (WebElement post : posts) {
-            WebElement postTitle = post.findElement(By.xpath(".//h3"));
-            if (postTitle.getText().equals(expectedTitle)) {
-                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", post);
-                return post;
-            }
-        }
-        throw new Exception("Post with the title " + expectedTitle + " is not found");
-    }
-
     public boolean isDraftPostCreated(String expectedTitle) {
+        wait.until(ExpectedConditions.visibilityOfAllElements(posts));
         boolean postFound = false;
         try {
-            WebElement post = findPostByTitle(expectedTitle);
-            postFound = post != null;
+            for (WebElement post : posts) {
+                WebElement postTitle = post.findElement(By.xpath(".//h3"));
+                if (postTitle.getText().equals(expectedTitle)) {
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", post);
+                    postFound = true;
+                    break;
+                }
+            }
+            if (!postFound) {
+                throw new Exception("Post with the title " + expectedTitle + " is not found");
+            }
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
         return postFound;
     }
-//        wait.until(ExpectedConditions.visibilityOfAllElements(posts));
-//        boolean postFound = false;
-//        try {
-//            for (WebElement post : posts) {
-//                WebElement postTitle = post.findElement(By.xpath(".//h3"));
-//                if (postTitle.getText().equals(expectedTitle)) {
-//                    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", post);
-//                    postFound = true;
-//                    break;
-//                }
-//            }
-//            if (!postFound) {
-//                throw new Exception("Post with the title " + expectedTitle + " is not found");
-//            }
-//        } catch (Exception e) {
-//            System.err.println("Error: " + e.getMessage());
-//            e.printStackTrace();
-//        }
-//        return postFound;
-
 
     public void clickDraftPostCreated(String expectedTitle) {
+        wait.until(ExpectedConditions.visibilityOfAllElements(posts));
         try {
-            WebElement post = findPostByTitle(expectedTitle);
-            if (post != null) {
-                post.click();
+            boolean postFound = false;
+            for (WebElement post : posts) {
+                WebElement postTitle = post.findElement(By.xpath(".//h3"));
+                if (postTitle.getText().equals(expectedTitle)) {
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", post);
+                    post.click();
+                    postFound = true;
+                    break;
+                }
+            }
+            if (!postFound) {
+                throw new Exception("Post with the title " + expectedTitle + " is not found");
             }
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
     }
-
-
-//        wait.until(ExpectedConditions.visibilityOfAllElements(posts));
-//        try {
-//            boolean postFound = false;
-//            for (WebElement post : posts) {
-//                WebElement postTitle = post.findElement(By.xpath(".//h3"));
-//                if (postTitle.getText().equals(expectedTitle)) {
-//                    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", post);
-//                    post.click();
-//                    postFound = true;
-//                    break;
-//                }
-//            }
-//            if (!postFound) {
-//                throw new Exception("Post with the title " + expectedTitle + " is not found");
-//            }
-//        } catch (Exception e) {
-//            System.err.println("Error: " + e.getMessage());
-//            e.printStackTrace();
-//        }
-//    }
-
 
 }
 

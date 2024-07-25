@@ -5,7 +5,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import util.ScreenshotUtil;
+
 import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BaseTest {
@@ -52,5 +54,6 @@ public class BaseTest {
     public void tearDown() {
         driver.quit();
     }
+
 }
 

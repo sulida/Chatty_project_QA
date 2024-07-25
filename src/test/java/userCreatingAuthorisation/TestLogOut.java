@@ -22,7 +22,7 @@ public class TestLogOut extends BaseTest {
     }
 
     @Test
-    public  void logOutUserTest(){
+    public void logOutUserTest() {
         new Header(driver).hoverDropDownMenuHello()
                 .clickLogoutLink();
         defineTestResultTrue(new LoginPage(driver).getTextFromHeadLineLoginForm().contains("Login Form"));

@@ -9,7 +9,7 @@ public class TestDeleteProfile extends BaseTest {
 
     private String emailAdmin = "tbceee123@gmail.com";
     private String passwordAdmin = "abc123450001";
-    private String userEmail ="abcd@gmail.com";
+    private String userEmail = "abcd@gmail.com";
 
     @BeforeEach
     public void loginAdminwithValidData() {
@@ -20,7 +20,7 @@ public class TestDeleteProfile extends BaseTest {
                 .clickLoginButton();
     }
 
-    public void deleteProfileTest(){
+    public void deleteProfileTest() {
         AdminPage adminPage = new AdminPage(driver);
         adminPage.inputUserEmailInSearchBox(userEmail)
                 .clickSearchButton()

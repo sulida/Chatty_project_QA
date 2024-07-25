@@ -108,7 +108,7 @@ public class ProfilePage extends BasePage {
 
     public String getTextUserEmailProfile() {
         wait.until(ExpectedConditions.visibilityOf(userEmailInHeadLine));
-        return userEmailInHeadLine.getAttribute("value");
+        return userEmailInHeadLine.getText();
     }
 
     public String getTextName() {
@@ -135,6 +135,5 @@ public class ProfilePage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(selectGenderDropDownMenu));
         return selectGenderDropDownMenu.getAttribute("value");
     }
-
 
 }

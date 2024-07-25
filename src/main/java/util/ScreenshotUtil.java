@@ -4,6 +4,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.io.FileHandler;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,7 +14,7 @@ public class ScreenshotUtil {
     private static final String PATH = "src" + FILE_SEPARATOR + "test" + FILE_SEPARATOR + "resources" +
             FILE_SEPARATOR + "screenshots" + FILE_SEPARATOR;
 
-    private ScreenshotUtil(){
+    private ScreenshotUtil() {
     }
 
     public static void captureScreen(WebDriver driver, String name) {
@@ -22,7 +23,7 @@ public class ScreenshotUtil {
             FileHandler.copy(ts.getScreenshotAs(OutputType.FILE),
                     new File(PATH + name + System.currentTimeMillis() + ".png"));
         } catch (FileNotFoundException e) {
-           System.out.println("File wasn't found - file NotFoundexception");
+            System.out.println("File wasn't found - file NotFoundexception");
         } catch (IOException ex) {
             System.out.println("Input/output exception");
         }

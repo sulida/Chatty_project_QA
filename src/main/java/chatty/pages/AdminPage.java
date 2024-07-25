@@ -31,48 +31,48 @@ public class AdminPage extends BasePage {
     private WebElement userEmail;
 
 
-    public AdminPage(WebDriver driver) {
+    public AdminPage(WebDriver driver){
 
         super(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
-    public AdminPage inputUserEmailInSearchBox(String email) {
+    public AdminPage inputUserEmailInSearchBox(String email){
         wait.until(ExpectedConditions.elementToBeClickable(emailSearchBox));
         logger.info("Input email in search box: " + email);
         emailSearchBox.sendKeys(email);
         return new AdminPage(driver);
     }
 
-    public AdminPage clickSearchButton() {
+    public AdminPage clickSearchButton(){
         wait.until(ExpectedConditions.elementToBeClickable(searchButton));
         logger.info("Click search button");
         searchButton.click();
         return new AdminPage(driver);
     }
 
-    public ProfilePage clickEditButton() {
+    public ProfilePage clickEditButton(){
         wait.until(ExpectedConditions.elementToBeClickable(editButton));
         editButton.click();
         return new ProfilePage(driver);
     }
 
-    public AdminPage clickDeleteButton() {
+    public AdminPage clickDeleteButton(){
         wait.until(ExpectedConditions.elementToBeClickable(deleteButton));
         deleteButton.click();
         return new AdminPage(driver);
     }
 
-    public String getTextFromAdninPanelTitle() {
+    public String getTextFromAdninPanelTitle(){
         return adminPanelTitle.getText();
     }
 
-    public String getTextUserEmail() {
+    public String getTextUserEmail(){
         wait.until(ExpectedConditions.visibilityOf(userEmail));
         return userEmail.getText();
     }
 
-    public boolean userEmailIsDisplayed() {
+    public boolean userEmailIsDisplayed(){
         wait.until(ExpectedConditions.visibilityOf(userEmail));
         return userEmail.isDisplayed();
     }
