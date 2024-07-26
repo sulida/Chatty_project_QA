@@ -33,6 +33,7 @@ public class TestCreatePost extends BaseTest {
 
     @Test
     public void createPostWithValidDataTest() {
+        System.out.println("Running createPostWithValidDataTest");
         BlogPage blogPage = new BlogPage(driver);
         blogPage.clickCreatePostPlusButton()
                 .inputTitle(title)
@@ -48,11 +49,11 @@ public class TestCreatePost extends BaseTest {
 
     @Test
     public void createPostWithEmptyFields() {
+        System.out.println("createPostWithEmptyFields");
         BlogPage blogPage = new BlogPage(driver);
         blogPage.clickCreatePostPlusButton()
                 .clickSubmitButton();
-        CreatePostPage createPostPage = new CreatePostPage(driver);
-        defineTestResultTrue(createPostPage.getTextfromErrorMessage().contains("Please fill the field"));
+        defineTestResultTrue(new CreatePostPage(driver).getTextfromErrorMessage().contains("Please fill the field"));
 
     }
 }
