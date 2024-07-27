@@ -4,6 +4,7 @@ import basetest.BaseTest;
 import chatty.pages.AdminPage;
 import chatty.pages.LoginPage;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class TestDeleteProfile extends BaseTest {
 
@@ -20,6 +21,7 @@ public class TestDeleteProfile extends BaseTest {
                 .clickLoginButton();
     }
 
+    @Test
     public void deleteProfileTest() {
         AdminPage adminPage = new AdminPage(driver);
         adminPage.inputUserEmailInSearchBox(userEmail)
